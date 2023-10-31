@@ -13,7 +13,37 @@
 		35AC7D532AF1610300AB1F72 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35AC7D512AF1610300AB1F72 /* Main.storyboard */; };
 		35AC7D552AF1610500AB1F72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35AC7D542AF1610500AB1F72 /* Assets.xcassets */; };
 		35AC7D582AF1610500AB1F72 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35AC7D562AF1610500AB1F72 /* LaunchScreen.storyboard */; };
+		35AC7D662AF1643F00AB1F72 /* UniformTypeIdentifiers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35AC7D652AF1643F00AB1F72 /* UniformTypeIdentifiers.framework */; };
+		35AC7D692AF1643F00AB1F72 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35AC7D682AF1643F00AB1F72 /* Media.xcassets */; };
+		35AC7D6B2AF1643F00AB1F72 /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC7D6A2AF1643F00AB1F72 /* ActionViewController.swift */; };
+		35AC7D6E2AF1643F00AB1F72 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35AC7D6C2AF1643F00AB1F72 /* MainInterface.storyboard */; };
+		35AC7D722AF1643F00AB1F72 /* Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 35AC7D632AF1643F00AB1F72 /* Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		35AC7D782AF16F0200AB1F72 /* Action.js in Resources */ = {isa = PBXBuildFile; fileRef = 35AC7D772AF16F0200AB1F72 /* Action.js */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		35AC7D702AF1643F00AB1F72 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 35AC7D402AF1610300AB1F72 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 35AC7D622AF1643F00AB1F72;
+			remoteInfo = Extension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		35AC7D762AF1643F00AB1F72 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				35AC7D722AF1643F00AB1F72 /* Extension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		35AC7D482AF1610300AB1F72 /* Project19.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project19.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -24,6 +54,13 @@
 		35AC7D542AF1610500AB1F72 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		35AC7D572AF1610500AB1F72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		35AC7D592AF1610500AB1F72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		35AC7D632AF1643F00AB1F72 /* Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Extension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		35AC7D652AF1643F00AB1F72 /* UniformTypeIdentifiers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniformTypeIdentifiers.framework; path = System/Library/Frameworks/UniformTypeIdentifiers.framework; sourceTree = SDKROOT; };
+		35AC7D682AF1643F00AB1F72 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		35AC7D6A2AF1643F00AB1F72 /* ActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
+		35AC7D6D2AF1643F00AB1F72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		35AC7D6F2AF1643F00AB1F72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		35AC7D772AF16F0200AB1F72 /* Action.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Action.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,6 +71,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		35AC7D602AF1643F00AB1F72 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				35AC7D662AF1643F00AB1F72 /* UniformTypeIdentifiers.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -41,6 +86,8 @@
 			isa = PBXGroup;
 			children = (
 				35AC7D4A2AF1610300AB1F72 /* Project19 */,
+				35AC7D672AF1643F00AB1F72 /* Extension */,
+				35AC7D642AF1643F00AB1F72 /* Frameworks */,
 				35AC7D492AF1610300AB1F72 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -49,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				35AC7D482AF1610300AB1F72 /* Project19.app */,
+				35AC7D632AF1643F00AB1F72 /* Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -67,6 +115,26 @@
 			path = Project19;
 			sourceTree = "<group>";
 		};
+		35AC7D642AF1643F00AB1F72 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				35AC7D652AF1643F00AB1F72 /* UniformTypeIdentifiers.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		35AC7D672AF1643F00AB1F72 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				35AC7D682AF1643F00AB1F72 /* Media.xcassets */,
+				35AC7D6A2AF1643F00AB1F72 /* ActionViewController.swift */,
+				35AC7D6C2AF1643F00AB1F72 /* MainInterface.storyboard */,
+				35AC7D6F2AF1643F00AB1F72 /* Info.plist */,
+				35AC7D772AF16F0200AB1F72 /* Action.js */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -77,15 +145,34 @@
 				35AC7D442AF1610300AB1F72 /* Sources */,
 				35AC7D452AF1610300AB1F72 /* Frameworks */,
 				35AC7D462AF1610300AB1F72 /* Resources */,
+				35AC7D762AF1643F00AB1F72 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				35AC7D712AF1643F00AB1F72 /* PBXTargetDependency */,
 			);
 			name = Project19;
 			productName = Project19;
 			productReference = 35AC7D482AF1610300AB1F72 /* Project19.app */;
 			productType = "com.apple.product-type.application";
+		};
+		35AC7D622AF1643F00AB1F72 /* Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 35AC7D732AF1643F00AB1F72 /* Build configuration list for PBXNativeTarget "Extension" */;
+			buildPhases = (
+				35AC7D5F2AF1643F00AB1F72 /* Sources */,
+				35AC7D602AF1643F00AB1F72 /* Frameworks */,
+				35AC7D612AF1643F00AB1F72 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Extension;
+			productName = Extension;
+			productReference = 35AC7D632AF1643F00AB1F72 /* Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -98,6 +185,9 @@
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					35AC7D472AF1610300AB1F72 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					35AC7D622AF1643F00AB1F72 = {
 						CreatedOnToolsVersion = 14.2;
 					};
 				};
@@ -116,6 +206,7 @@
 			projectRoot = "";
 			targets = (
 				35AC7D472AF1610300AB1F72 /* Project19 */,
+				35AC7D622AF1643F00AB1F72 /* Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -128,6 +219,16 @@
 				35AC7D582AF1610500AB1F72 /* LaunchScreen.storyboard in Resources */,
 				35AC7D552AF1610500AB1F72 /* Assets.xcassets in Resources */,
 				35AC7D532AF1610300AB1F72 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		35AC7D612AF1643F00AB1F72 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				35AC7D782AF16F0200AB1F72 /* Action.js in Resources */,
+				35AC7D692AF1643F00AB1F72 /* Media.xcassets in Resources */,
+				35AC7D6E2AF1643F00AB1F72 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,7 +245,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		35AC7D5F2AF1643F00AB1F72 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				35AC7D6B2AF1643F00AB1F72 /* ActionViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		35AC7D712AF1643F00AB1F72 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 35AC7D622AF1643F00AB1F72 /* Extension */;
+			targetProxy = 35AC7D702AF1643F00AB1F72 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		35AC7D512AF1610300AB1F72 /* Main.storyboard */ = {
@@ -161,6 +278,14 @@
 				35AC7D572AF1610500AB1F72 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		35AC7D6C2AF1643F00AB1F72 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				35AC7D6D2AF1643F00AB1F72 /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -283,6 +408,7 @@
 		35AC7D5D2AF1610500AB1F72 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -311,6 +437,7 @@
 		35AC7D5E2AF1610500AB1F72 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -336,6 +463,56 @@
 			};
 			name = Release;
 		};
+		35AC7D742AF1643F00AB1F72 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QYJ353CJUT;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Extension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Extension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yulian.Project19.Extension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		35AC7D752AF1643F00AB1F72 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QYJ353CJUT;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Extension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Extension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yulian.Project19.Extension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -353,6 +530,15 @@
 			buildConfigurations = (
 				35AC7D5D2AF1610500AB1F72 /* Debug */,
 				35AC7D5E2AF1610500AB1F72 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		35AC7D732AF1643F00AB1F72 /* Build configuration list for PBXNativeTarget "Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				35AC7D742AF1643F00AB1F72 /* Debug */,
+				35AC7D752AF1643F00AB1F72 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
