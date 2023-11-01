@@ -5,10 +5,10 @@ Action.prototype = {
 run: function(parameters) {
     parameters.completionFunction({
         "URL": document.URL,
-        "title": document.title,
-        "body": document.body.innerText,
-        "head": document.head.innerText,
-        "doctype": document.doctype
+        "title": document.title
+//        "body": document.body,
+//        "head": document.head,
+//        "doctype": document.doctype
     })
 },
 finalize: function(parameters) {

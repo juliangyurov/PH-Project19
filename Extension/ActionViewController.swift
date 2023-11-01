@@ -17,10 +17,11 @@ class ActionViewController: UIViewController {
     var pageBody = ""
     var pageHead = ""
     var pageDoctype = ""
+    var testURL = URL(string: "")
     
      override func viewDidLoad() {
         super.viewDidLoad()
-         
+          
          let select = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(selectScript))
          let done = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
          navigationItem.rightBarButtonItems = [done,select]
@@ -28,7 +29,6 @@ class ActionViewController: UIViewController {
          let notificationCenter = NotificationCenter.default
          notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
          notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-         
     
         if let inputItem = extensionContext?.inputItems.first as? NSExtensionItem {
             if let itemProvider = inputItem.attachments?.first {
@@ -36,16 +36,25 @@ class ActionViewController: UIViewController {
                     //do stuff
                     guard let itemDictionary = dict as? NSDictionary else { return }
                     guard let javaScriptValues = itemDictionary[NSExtensionJavaScriptPreprocessingResultsKey] as? NSDictionary else { return }
-                    //print(javaScriptValues)
+                    print("-------------------------------------------")
+                    print(javaScriptValues)
+                    print("-------------------------------------------")
                     self?.pageTitle = javaScriptValues["title"] as? String ?? ""
                     self?.pageURL = javaScriptValues["URL"] as? String ?? ""
                     self?.pageBody = javaScriptValues["body"] as? String ?? ""
                     self?.pageHead = javaScriptValues["head"] as? String ?? ""
                     self?.pageDoctype = javaScriptValues["doctype"] as? String ?? ""
                     
+                    //self?.testURL = self?.pageURL as URL
+                   
+                    print("-------------------------------------------")
+                    print("host: \(  URL(string: self?.pageURL ?? "")?.host  )")
+                    print("-------------------------------------------")
+                    
                     DispatchQueue.main.async {
                         self?.title = self?.pageTitle
                     }
+                    
                 }
             }
         }
@@ -93,11 +102,8 @@ class ActionViewController: UIViewController {
     }
     
     func javascriptSelector(alert: UIAlertAction) {
-        
         script.text = ""
         script.text = alert.title
-        
-        
-    }
+     }
 
 }
