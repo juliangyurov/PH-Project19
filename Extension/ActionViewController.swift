@@ -33,12 +33,13 @@ class ActionViewController: UIViewController {
          if let savedWebSites = defaults.object(forKey: "savedWebSites") as? Data {
              if let decodedWebSites = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(savedWebSites) as? [WebSite] {
                  webSites = decodedWebSites
-                 print("#################  \(webSites.count)",webSites[0].host,webSites[0].jScripts[0].javaScript)
+                 print("-------------------- webSites.count: \(webSites.count) ------------------------")
                  for item in webSites{
-                     print("###############################")
+                     print("---------------------------------------------------------------")
                      print(item.host,item.jScripts.count,item.jScripts[0].javaScript)
-                     print("###############################")
+                     
                  }
+                 print("---------------------------------------------------------------")
              }
          }
          
