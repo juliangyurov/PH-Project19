@@ -26,9 +26,10 @@ class ActionViewController: UIViewController {
      override func viewDidLoad() {
         super.viewDidLoad()
          
+         let table = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(showTable))
          let select = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(selectScript))
          let done = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
-         navigationItem.rightBarButtonItems = [done,select]
+         navigationItem.rightBarButtonItems = [done,select,table]
          
          if let savedWebSites = defaults.object(forKey: "savedWebSites") as? Data {
              if let decodedWebSites = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(savedWebSites) as? [WebSite] {
@@ -77,8 +78,32 @@ class ActionViewController: UIViewController {
             }
         }
     }
-
-    @IBAction func done() {
+    
+    @objc func selectScript() {
+        let ac = UIAlertController(title: "Select script", message: "from prepared javascripts", preferredStyle: .actionSheet)
+        ac.addAction(UIAlertAction(title: "alert(document.title)", style: .default, handler: javascriptSelector))
+        ac.addAction(UIAlertAction(title: "alert(document.URL)", style: .default, handler: javascriptSelector))
+        ac.addAction(UIAlertAction(title: "alert(document.cookie)", style: .default, handler: javascriptSelector))
+        ac.addAction(UIAlertAction(title: "alert(document.body.innerText)", style: .default, handler: javascriptSelector))
+        ac.addAction(UIAlertAction(title: "alert(document.compatMode)", style: .default, handler: javascriptSelector))
+        ac.addAction(UIAlertAction(title: "alert(document.contentType)", style: .default, handler: javascriptSelector))
+        ac.addAction(UIAlertAction(title: "alert(document.location)", style: .default, handler: javascriptSelector))
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        present(ac, animated: true)
+    }
+    
+    @objc func showTable() {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "SavedJS") as? SavedJavaScripts {
+            for site in webSites{
+                for someScript in site.jScripts{
+                    vc.hosts.append(someScript.jsTitle)
+                }
+             }
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    @objc func done() {
         // Return any edited content to the host app.
         // This template doesn't do anything, so we just echo the passed in items.
         let item = NSExtensionItem()
@@ -105,27 +130,27 @@ class ActionViewController: UIViewController {
         let selectedRange = script.selectedRange
         script.scrollRangeToVisible(selectedRange)
     }
-    
-    @objc func selectScript() {
-        let ac = UIAlertController(title: "Select script", message: "from prepared javascripts", preferredStyle: .actionSheet)
-        ac.addAction(UIAlertAction(title: "alert(document.title)", style: .default, handler: javascriptSelector))
-        ac.addAction(UIAlertAction(title: "alert(document.URL)", style: .default, handler: javascriptSelector))
-        ac.addAction(UIAlertAction(title: "alert(document.cookie)", style: .default, handler: javascriptSelector))
-        ac.addAction(UIAlertAction(title: "alert(document.body.innerText)", style: .default, handler: javascriptSelector))
-        ac.addAction(UIAlertAction(title: "alert(document.compatMode)", style: .default, handler: javascriptSelector))
-        ac.addAction(UIAlertAction(title: "alert(document.contentType)", style: .default, handler: javascriptSelector))
-        ac.addAction(UIAlertAction(title: "alert(document.location)", style: .default, handler: javascriptSelector))
-        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        present(ac, animated: true)
-    }
+ 
     
     func javascriptSelector(alert: UIAlertAction) {
+        var ourTitle = ""
+        let ac = UIAlertController(title: "Title needed", message: "Give some name for the script", preferredStyle: .alert)
+        ac.addTextField()
+        ac.addAction(UIAlertAction(title: "OK", style: .default){
+            [ weak ac] _ in
+            guard let str = ac?.textFields?[0].text else { return }
+            ourTitle = str
+            print("&&&&&&&&&&&&&&&&&&&&& \(ourTitle) &&&&&&&&&&&&&&&&&&&&&&&&")
+        })
+        present(ac, animated: true)
+        
         script.text = ""
         script.text = alert.title
-        let tempJavaScript = JavaScript(javaScript: script.text)
+        let tempJavaScript = JavaScript(javaScript: script.text, jsTitle: ourTitle)
         var tempJavaScripts = [JavaScript]()
         tempJavaScripts.append(tempJavaScript)
         let webSite = WebSite(host: host, jScripts: tempJavaScripts)
+        webSites.removeAll()
         webSites.append(webSite)
         save()
      }
