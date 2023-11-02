@@ -1,0 +1,27 @@
+//Get tag p list
+//temp.count doesn't work
+var temp = document.getElementsByTagName("p");
+   for(i=0;i<4;i++){
+       alert(temp[i].innerText);
+    }
+    
+//Get document title
+alert(document.title)
+
+//Get document URL
+alert(document.URL)
+
+//Get document cookies
+alert(document.cookie)
+
+// Get document body inner text
+alert(document.body.innerText)
+
+//Get compatible Mode
+alert(document.compatMode)
+
+//Get content type
+alert(document.contentType
+
+//Get location
+alert(document.location)

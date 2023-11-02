@@ -19,12 +19,28 @@ class ActionViewController: UIViewController {
     var pageDoctype = ""
     var testURL = URL(string: "")
     
+    var webSites = [WebSite]()
+    var host = ""
+    let defaults = UserDefaults.standard
+    
      override func viewDidLoad() {
         super.viewDidLoad()
-          
+         
          let select = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(selectScript))
          let done = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
          navigationItem.rightBarButtonItems = [done,select]
+         
+         if let savedWebSites = defaults.object(forKey: "savedWebSites") as? Data {
+             if let decodedWebSites = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(savedWebSites) as? [WebSite] {
+                 webSites = decodedWebSites
+                 print("#################  \(webSites.count)",webSites[0].host,webSites[0].jScripts[0].javaScript)
+                 for item in webSites{
+                     print("###############################")
+                     print(item.host,item.jScripts.count,item.jScripts[0].javaScript)
+                     print("###############################")
+                 }
+             }
+         }
          
          let notificationCenter = NotificationCenter.default
          notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -48,7 +64,8 @@ class ActionViewController: UIViewController {
                     //self?.testURL = self?.pageURL as URL
                    
                     print("-------------------------------------------")
-                    print("host: \(  URL(string: self?.pageURL ?? "")?.host  )")
+                    self?.host = URL(string: self?.pageURL ?? "")?.host ?? ""
+                    print("host: \(  URL(string: self?.pageURL ?? "")?.host  ) absoluteString: \(URL(string: self?.pageURL ?? "")?.absoluteString)")
                     print("-------------------------------------------")
                     
                     DispatchQueue.main.async {
@@ -104,6 +121,18 @@ class ActionViewController: UIViewController {
     func javascriptSelector(alert: UIAlertAction) {
         script.text = ""
         script.text = alert.title
+        let tempJavaScript = JavaScript(javaScript: script.text)
+        var tempJavaScripts = [JavaScript]()
+        tempJavaScripts.append(tempJavaScript)
+        let webSite = WebSite(host: host, jScripts: tempJavaScripts)
+        webSites.append(webSite)
+        save()
      }
+    
+    func save() {
+        if let archivedData = try? NSKeyedArchiver.archivedData(withRootObject: webSites, requiringSecureCoding: false){
+            defaults.set(archivedData, forKey: "savedWebSites")
+        }
+    }
 
 }
