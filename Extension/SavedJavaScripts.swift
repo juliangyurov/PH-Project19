@@ -7,9 +7,18 @@
 
 import UIKit
 
+// Protocol used for sending data back
+protocol DataEnteredDelegate: AnyObject {
+    func userDidEnterInformation(jsTitle: String)
+}
+
 class SavedJavaScripts: UITableViewController {
     
-    var hosts = [String]()
+    // Making this a weak variable, so that it won't create a strong reference cycle
+        weak var delegate: DataEnteredDelegate? = nil
+
+    
+    var jsTitles = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,18 +39,21 @@ class SavedJavaScripts: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return hosts.count
+        return jsTitles.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "jscell", for: indexPath)
 
-        cell.textLabel?.text = hosts[indexPath.row]
+        cell.textLabel?.text = jsTitles[indexPath.row]
 
         return cell
     }
-   
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.userDidEnterInformation(jsTitle: jsTitles[indexPath.row])
+        navigationController?.popViewController(animated: true)
+     }
 
     /*
     // Override to support conditional editing of the table view.

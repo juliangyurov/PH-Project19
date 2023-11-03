@@ -9,7 +9,22 @@ import UIKit
 import MobileCoreServices
 import UniformTypeIdentifiers
 
-class ActionViewController: UIViewController {
+class ActionViewController: UIViewController, DataEnteredDelegate {
+    
+    func userDidEnterInformation(jsTitle: String) {
+        print("RETURNED: jsTitle: \(jsTitle)")
+        for site in webSites{
+            //print(site.host,site.jScripts.count)
+            for jScript in site.jScripts{
+                 //print(jScript.jsTitle,jScript.javaScript)
+                if jScript.jsTitle == jsTitle {
+                    script.text = jScript.javaScript
+                }
+            }
+            
+        }
+    }
+    
     @IBOutlet var script: UITextView!
 
     var pageTitle = ""
@@ -23,6 +38,19 @@ class ActionViewController: UIViewController {
     var host = ""
     let defaults = UserDefaults.standard
     
+    var scriptTitle = "StartingTitle" {
+        didSet{
+            var tempJavaScript = JavaScript(javaScript: script.text, jsTitle: scriptTitle)
+            var tempJavaScripts = [JavaScript]()
+            tempJavaScripts.append(tempJavaScript)
+            var webSite = WebSite(host: host, jScripts: tempJavaScripts)
+            //webSites.removeAll()
+            webSites.append(webSite)
+            save()
+        }
+    }
+    
+    
      override func viewDidLoad() {
         super.viewDidLoad()
          
@@ -35,9 +63,13 @@ class ActionViewController: UIViewController {
              if let decodedWebSites = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(savedWebSites) as? [WebSite] {
                  webSites = decodedWebSites
                  print("-------------------- webSites.count: \(webSites.count) ------------------------")
-                 for item in webSites{
+                 for site in webSites{
                      print("---------------------------------------------------------------")
-                     print(item.host,item.jScripts.count,item.jScripts[0].javaScript)
+                     print(site.host,site.jScripts.count)
+                     for script in site.jScripts{
+                         print("---------------------------------------------------------------")
+                         print(script.jsTitle,script.javaScript)
+                     }
                      
                  }
                  print("---------------------------------------------------------------")
@@ -94,11 +126,16 @@ class ActionViewController: UIViewController {
     
     @objc func showTable() {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "SavedJS") as? SavedJavaScripts {
+            vc.delegate = self
             for site in webSites{
+                print(site.host,site.jScripts,terminator: " ->->-> ")
                 for someScript in site.jScripts{
-                    vc.hosts.append(someScript.jsTitle)
+                    print(someScript.jsTitle,terminator: " -> ")
+                    vc.jsTitles.append(someScript.jsTitle)
                 }
              }
+            print(webSites[0].jScripts[0].jsTitle)
+            print("---->>>END<<<----")
             navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -133,26 +170,27 @@ class ActionViewController: UIViewController {
  
     
     func javascriptSelector(alert: UIAlertAction) {
-        var ourTitle = ""
+        //var ourTitle = "Test123"
         let ac = UIAlertController(title: "Title needed", message: "Give some name for the script", preferredStyle: .alert)
         ac.addTextField()
         ac.addAction(UIAlertAction(title: "OK", style: .default){
-            [ weak ac] _ in
+            [weak self, weak ac] _ in
             guard let str = ac?.textFields?[0].text else { return }
-            ourTitle = str
-            print("&&&&&&&&&&&&&&&&&&&&& \(ourTitle) &&&&&&&&&&&&&&&&&&&&&&&&")
+            self?.scriptTitle = str
+            print("&&&&&&&&&&&&&&&&&&&&& \(self?.scriptTitle) &&&&&&&&&&&&&&&&&&&&&&&&")
+            
         })
-        present(ac, animated: true)
+        present(ac, animated: true, completion: nil)
         
         script.text = ""
         script.text = alert.title
-        let tempJavaScript = JavaScript(javaScript: script.text, jsTitle: ourTitle)
-        var tempJavaScripts = [JavaScript]()
-        tempJavaScripts.append(tempJavaScript)
-        let webSite = WebSite(host: host, jScripts: tempJavaScripts)
-        webSites.removeAll()
-        webSites.append(webSite)
-        save()
+//        var tempJavaScript = JavaScript(javaScript: script.text, jsTitle: ourTitle)
+//        var tempJavaScripts = [JavaScript]()
+//        tempJavaScripts.append(tempJavaScript)
+//        var webSite = WebSite(host: host, jScripts: tempJavaScripts)
+//        webSites.removeAll()
+//        webSites.append(webSite)
+//        save()
      }
     
     func save() {
